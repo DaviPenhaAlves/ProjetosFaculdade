@@ -1,4 +1,4 @@
-# 📟 Calculadora de 20 Operações em C
+# Calculadora de 20 Operações em C
 
 > Programa de linha de comando em C, com menu interativo, que reúne 20
 > operações matemáticas, geométricas e de conversão de unidades.
