@@ -2,7 +2,7 @@
 
 ## 1. Identificação
 
-- **Aluno:** [NOME COMPLETO DO ALUNO]
+- **Aluno:** DAVI PENHA SERRA ALVES
 - **Disciplina:** Algoritmo e Pensamento Computacional
 - **Professora:** Profa. Karla Sartin
 - **Projeto:** Desafio de Monitoramento de Temperatura
