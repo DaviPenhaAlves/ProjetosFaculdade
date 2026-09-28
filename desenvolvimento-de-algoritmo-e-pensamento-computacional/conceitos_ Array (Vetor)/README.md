@@ -1,6 +1,7 @@
 # Atividade de Vetores em C
 
-**Aluno:** Davi
+**Aluno:** Davi Penha Serra Alves 
+
 **Instituição:** UDF
 
 ## Objetivo
