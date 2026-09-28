@@ -1,5 +1,3 @@
-/* Atividade de Vetores em C - Aluno: Davi - UDF */
-
 #include <stdio.h>
 
 int main() {
