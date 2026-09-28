@@ -1,7 +1,6 @@
 # Atividade de Vetores em C
 
-**Aluno:** Davi Penha Serra Alves
-
+**Aluno:** Davi
 **Instituição:** UDF
 
 ## Objetivo
@@ -21,19 +20,44 @@ Desenvolver um programa em linguagem C que aplique os conceitos de arrays (vetor
 
 ## Como compilar e executar
 
-Requer um compilador C (ex.: `gcc`).
+### Softwares necessários
+
+- **Compilador GCC**, que transforma o `vetores.c` em um programa executável:
+  - **Windows:** instalar o [MSYS2](https://www.msys2.org/) e, no terminal do MSYS2, executar `pacman -S mingw-w64-ucrt-x86_64-gcc`. Depois, adicionar a pasta `C:\msys64\ucrt64\bin` ao PATH do Windows.
+  - **Linux (Ubuntu/Debian):** `sudo apt install gcc`
+  - **macOS:** `xcode-select --install`
+- **Terminal:** PowerShell ou Prompt de Comando (Windows), ou o terminal do Linux/macOS. O terminal integrado do VS Code também funciona.
+- **Alternativa sem instalar nada:** um compilador online, como o [OnlineGDB](https://www.onlinegdb.com/online_c_compiler).
+
+Para verificar se o GCC está instalado, execute:
 
 ```bash
-gcc -Wall -o vetores vetores.c
-./vetores
+gcc --version
 ```
 
-No Windows (usando MinGW), o executável gerado será `vetores.exe`:
+### Passo a passo
 
-```bash
-gcc -Wall -o vetores vetores.c
-vetores.exe
-```
+1. Baixe ou clone este repositório e abra o terminal **na pasta onde está o arquivo `vetores.c`**.
+2. Compile o programa:
+   ```bash
+   gcc vetores.c -o vetores
+   ```
+   Se não aparecer nenhuma mensagem, a compilação deu certo e o executável foi criado.
+3. Execute o programa:
+   - **Windows (PowerShell):**
+     ```powershell
+     .\vetores.exe
+     ```
+   - **Linux/macOS:**
+     ```bash
+     ./vetores
+     ```
+4. Digite os 20 números inteiros, um por vez, pressionando Enter após cada um. Ao final, o programa exibe os resultados e todos os elementos do vetor.
+
+### Problemas comuns
+
+- **`gcc` não é reconhecido:** o GCC não está instalado ou não foi adicionado ao PATH. Confira a seção "Softwares necessários".
+- **`Permission denied` ao compilar (Windows):** o `vetores.exe` está aberto ou em execução. Feche o programa e compile novamente.
 
 ## Exemplo de entrada e saída
 
@@ -58,4 +82,4 @@ Menor valor: -24
 
 ## Captura de tela
 
-*(Adicionar aqui um print da execução do programa no terminal antes de subir para o GitHub.)*
+![Execução do programa](print.png)
