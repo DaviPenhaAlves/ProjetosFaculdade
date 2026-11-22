@@ -2,7 +2,7 @@
 
 Programa de console em linguagem C que realiza soma, subtração, multiplicação e divisão de matrizes, controlado por um menu. O código é modularizado em arquivos com responsabilidades separadas.
 
-**Autor:** Davi — UDF
+**Autor:** Davi, UDF
 
 ## Funcionalidades
 
