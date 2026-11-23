@@ -1,8 +1,10 @@
 # Sistema de Senhas de Atendimento — Clínica de Especialidades Médicas
 
-Programa de console em linguagem C que gerencia as senhas de atendimento de uma clínica. O paciente informa seus dados, o sistema classifica o atendimento (Urgente, Preferencial ou Normal), gera a senha e um painel mostra qual senha está sendo atendida.
+**Autor:** Davi — UDF
 
-**Autor:** Davi, UDF
+## Objetivo
+
+Desenvolver, em linguagem C, um sistema de gerenciamento de senhas de atendimento de uma clínica de especialidades médicas. O paciente informa seus dados, o sistema classifica o atendimento (Urgente, Preferencial ou Normal), gera a senha e um painel mostra qual senha está sendo atendida.
 
 ## Funcionalidades
 
@@ -71,6 +73,47 @@ sistema_senhas_clinica/
 | `entrada` | Lê números, nome e opções de letra (F/M/O, S/N), repetindo a pergunta até a resposta ser válida |
 | `senhas` | Guarda os pacientes, classifica (U/P/N), gera o número da senha e decide quem é o próximo a ser chamado |
 | `main` | Mostra o menu e o painel, e liga as opções do menu às funções dos outros módulos |
+
+## Funções implementadas
+
+### `entrada.c` — leitura e validação
+
+| Função | O que faz |
+|---|---|
+| `ler_linha` (interna) | Lê uma linha do teclado, remove o *enter* e descarta o excesso se a linha for maior que o espaço disponível. Encerra o programa se a entrada acabar |
+| `ler_inteiro` | Pede um número inteiro dentro de um intervalo e repete até ser válido |
+| `ler_nome` | Pede o nome e repete se ficar vazio ou só com espaços |
+| `ler_opcao` | Pede uma única letra dentre as válidas (ex.: `FMO` ou `SN`) e devolve em maiúscula |
+
+### `senhas.c` — regras do sistema
+
+| Função | O que faz |
+|---|---|
+| `classificar_paciente` (interna) | Decide o tipo da senha: `U` (mais de 80 anos), `P` (gestante ou necessidade especial) ou `N` |
+| `gerar_numero` (interna) | Devolve o próximo número da senha, com um contador para cada tipo |
+| `limite_atingido` | Informa se a lista de pacientes está cheia |
+| `adicionar_paciente` | Classifica o paciente, gera a senha e o guarda na lista |
+| `procurar_proximo_do_tipo` (interna) | Acha o primeiro paciente de um tipo que ainda não foi chamado |
+| `chamar_proximo` | Chama o próximo da fila, na ordem U, P, N, e o marca como atendido |
+| `contar_aguardando` | Conta quantos pacientes ainda não foram chamados |
+| `nome_do_tipo` | Converte `U`, `P` ou `N` em "Urgente", "Preferencial" ou "Normal" |
+
+### `main.c` — interface
+
+| Função | O que faz |
+|---|---|
+| `mostrar_painel` | Exibe a senha em atendimento e a quantidade de pacientes aguardando |
+| `mostrar_menu` | Exibe as opções do menu |
+| `retirar_senha` | Opção 01: pergunta os dados do paciente e mostra a senha gerada |
+| `registrar_atendimento` | Opção 02: chama o próximo paciente e atualiza o painel |
+| `main` | Repete o menu até o usuário escolher sair e chama a função da opção escolhida |
+
+## Estruturas utilizadas
+
+- `struct Paciente`: guarda nome, idade, gênero, gestação, necessidade especial, tipo da senha, número e se já foi atendido.
+- Vetor de `Paciente` (até 1000), mantido em ordem de chegada.
+- Três contadores, um para cada tipo de senha.
+- Estruturas de decisão (`if`, `switch`) e de repetição (`while`, `for`, `do-while`).
 
 ## Como compilar e executar
 
