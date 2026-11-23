@@ -1,6 +1,6 @@
 # Calculadora de Matrizes em C
 
-**Autor:** Davi — UDF
+**Autor:** Davi, UDF
 
 ## Objetivo
 
