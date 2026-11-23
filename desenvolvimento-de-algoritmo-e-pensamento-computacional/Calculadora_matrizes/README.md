@@ -1,8 +1,10 @@
 # Calculadora de Matrizes em C
 
-Programa de console em linguagem C que realiza soma, subtração, multiplicação e divisão de matrizes, controlado por um menu. O código é modularizado em arquivos com responsabilidades separadas.
+**Autor:** Davi — UDF
 
-**Autor:** Davi, UDF
+## Objetivo
+
+Desenvolver, em linguagem C, uma calculadora de matrizes que realiza soma, subtração, multiplicação e divisão, controlada por um menu interativo. O código é modularizado em arquivos com responsabilidades separadas.
 
 ## Funcionalidades
 
@@ -65,6 +67,54 @@ calculadora_matrizes/
 | `matriz` | Define a struct `Matriz` (linhas, colunas e dados), pede os elementos ao usuário e imprime a matriz |
 | `operacoes` | Contém as quatro operações e a inversão de matriz. Retorna códigos de erro em vez de imprimir mensagens |
 | `main` | Mostra o menu, guarda o estado (quantidade, matrizes, resultado) e chama os demais módulos |
+
+## Funções implementadas
+
+### `entrada.c` — leitura e validação
+
+| Função | O que faz |
+|---|---|
+| `ler_linha` (interna) | Lê uma linha do teclado, remove o *enter* e descarta o excesso se a linha for muito longa. Encerra o programa se a entrada acabar |
+| `ler_inteiro` | Pede um número inteiro dentro de um intervalo e repete até ser válido |
+| `ler_decimal` | Pede um número real, aceitando vírgula ou ponto |
+
+### `matriz.c` — dados da matriz
+
+| Função | O que faz |
+|---|---|
+| `ler_matriz` | Pergunta o tamanho e cada elemento da matriz |
+| `mostrar_matriz` | Imprime a matriz na tela, com duas casas decimais |
+
+### `operacoes.c` — cálculos
+
+| Função | O que faz |
+|---|---|
+| `somar` | Soma duas matrizes de mesmo tamanho |
+| `subtrair` | Subtrai duas matrizes de mesmo tamanho |
+| `multiplicar` | Multiplica duas matrizes (colunas da primeira = linhas da segunda) |
+| `inverter` (interna) | Calcula a inversa de uma matriz quadrada pelo método de Gauss-Jordan |
+| `dividir` | Calcula `A ÷ B` como `A × inversa(B)` |
+| `absoluto` (interna) | Devolve o valor absoluto de um número |
+| `aplicar_operacao` | Escolhe a função certa (soma, subtração, multiplicação ou divisão) pelo código da operação |
+| `mensagem_erro` | Converte o código de erro em um texto para o usuário |
+
+### `main.c` — interface
+
+| Função | O que faz |
+|---|---|
+| `mostrar_menu` | Exibe as opções do menu |
+| `escolher_quantidade` | Opção 1: define quantas matrizes serão usadas |
+| `informar_matrizes` | Opção 2: lê todas as matrizes (exige a opção 1 antes) |
+| `calcular` | Opções 3 a 6: aplica a operação entre todas as matrizes e guarda o resultado |
+| `apresentar_resultado` | Opção 7: mostra a matriz solução |
+| `main` | Repete o menu até o usuário escolher sair e chama a função da opção escolhida |
+
+## Estruturas utilizadas
+
+- `struct Matriz`: guarda o número de linhas, o de colunas e os valores em uma matriz de `double` (até 10x10).
+- Vetor de `Matriz` (até 5), para guardar as matrizes informadas.
+- Códigos de erro definidos com `#define` para as operações inválidas.
+- Estruturas de decisão (`if`, `switch`) e de repetição (`while`, `for`, `do-while`).
 
 ## Como compilar e executar
 
