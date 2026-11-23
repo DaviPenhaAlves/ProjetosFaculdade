@@ -1,6 +1,6 @@
 # Sistema de Senhas de Atendimento — Clínica de Especialidades Médicas
 
-**Autor:** Davi — UDF
+**Autor:** Davi, UDF
 
 ## Objetivo
 
