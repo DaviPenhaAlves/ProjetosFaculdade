@@ -40,19 +40,6 @@ int ler_inteiro(const char *mensagem, int minimo, int maximo) {
     }
 }
 
-void ler_nome(const char *mensagem, char *destino, int tamanho) {
-    while (1) {
-        ler_linha(mensagem, destino, tamanho);
-
-        /* o nome so vale se tiver pelo menos uma letra (nao so espacos) */
-        for (int i = 0; destino[i] != '\0'; i++)
-            if (!isspace((unsigned char)destino[i]))
-                return;
-
-        printf("O nome nao pode ficar vazio.\n");
-    }
-}
-
 char ler_opcao(const char *mensagem, const char *validas) {
     char linha[40];
 

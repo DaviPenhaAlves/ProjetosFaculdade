@@ -5,20 +5,37 @@
 static Paciente pacientes[MAX_PACIENTES];
 static int total = 0;
 
-/* Um contador para cada tipo de senha */
+/* Um contador para cada categoria de senha */
 static int contador_u = 0;
 static int contador_p = 0;
 static int contador_n = 0;
 
-/* Regra do enunciado:
-   U = mais de 80 anos | P = gestante ou necessidade especial | N = os demais */
-static char classificar_paciente(int idade, int gestante, int necessidade_especial) {
-    if (idade > IDADE_URGENTE) return 'U';
-    if (gestante || necessidade_especial) return 'P';
+/* 1 se a idade da direito a senha preferencial: mulher com 60 anos ou mais
+   ou homem com 65 anos ou mais. */
+static int idade_preferencial(int idade, char genero) {
+    if (genero == 'F')
+        return idade >= IDADE_PREFERENCIAL_MULHER;
+    return idade >= IDADE_PREFERENCIAL_HOMEM;
+}
+
+/* Regras do enunciado (a categoria urgente vence a preferencial):
+   U = idade superior a 80 anos
+   P = gestante, lactante, necessidade especial, obesidade, mulher 60+ ou homem 65+
+   N = demais pacientes */
+static char classificar_paciente(const Paciente *p) {
+    if (p->idade > IDADE_URGENTE)
+        return 'U';
+
+    if (p->gestante || p->lactante || p->necessidade_especial || p->obesidade)
+        return 'P';
+
+    if (idade_preferencial(p->idade, p->genero))
+        return 'P';
+
     return 'N';
 }
 
-/* Cada tipo tem sua propria numeracao: U001, U002... P001, P002... N001, N002... */
+/* Cada categoria tem sua propria numeracao: U001, U002... P001, P002... N001, N002... */
 static int gerar_numero(char tipo) {
     if (tipo == 'U') {
         contador_u++;
@@ -40,7 +57,7 @@ const Paciente *adicionar_paciente(Paciente novo) {
     if (limite_atingido())
         return NULL;
 
-    novo.tipo = classificar_paciente(novo.idade, novo.gestante, novo.necessidade_especial);
+    novo.tipo = classificar_paciente(&novo);
     novo.numero = gerar_numero(novo.tipo);
     novo.atendido = 0;
 
@@ -49,7 +66,7 @@ const Paciente *adicionar_paciente(Paciente novo) {
     return &pacientes[total - 1];
 }
 
-/* Procura o primeiro paciente de um tipo que ainda nao foi chamado.
+/* Procura o primeiro paciente de uma categoria que ainda nao foi chamado.
    Retorna a posicao na lista ou -1 se nao achar. */
 static int procurar_proximo_do_tipo(char tipo) {
     for (int i = 0; i < total; i++) {
@@ -60,7 +77,7 @@ static int procurar_proximo_do_tipo(char tipo) {
 }
 
 const Paciente *chamar_proximo(void) {
-    const char ordem[] = {'U', 'P', 'N'};
+    const char ordem[] = {'U', 'P', 'N'};   /* urgente > preferencial > normal */
 
     for (int k = 0; k < 3; k++) {
         int i = procurar_proximo_do_tipo(ordem[k]);
