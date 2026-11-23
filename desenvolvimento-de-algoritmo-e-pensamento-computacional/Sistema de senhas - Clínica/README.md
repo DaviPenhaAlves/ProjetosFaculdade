@@ -1,6 +1,6 @@
 # Sistema de Senhas de Atendimento — Clínica de Especialidades Médicas
 
-**Autor:** Davi, UDF
+**Autor:** Davi — UDF
 
 ## Objetivo
 
@@ -181,6 +181,80 @@ Chamando proximo paciente: senha U001
 Senha em atendimento: U001
 Pacientes aguardando: 1
 ===============================================
+```
+
+## Exemplos demonstrativos de geração e chamada de senhas
+
+### 1. Geração de senhas
+
+Cinco pacientes retiram a senha, nesta ordem (opção 01):
+
+| Ordem de chegada | Paciente | Senha gerada | Categoria |
+|---|---|---|---|
+| 1º | Homem, 30 anos, sem condições de prioridade | `N001` | Normal |
+| 2º | Mulher, 30 anos, gestante | `P001` | Preferencial |
+| 3º | Homem, 85 anos | `U001` | Urgente |
+| 4º | Mulher, 25 anos, lactante | `P002` | Preferencial |
+| 5º | Homem, 30 anos, sem condições de prioridade | `N002` | Normal |
+
+Repare que a numeração é independente: cada categoria começa em 001, mesmo que outras senhas já tenham sido emitidas.
+
+Saída do programa ao retirar essas senhas:
+
+```
+Senha retirada com sucesso!
+Senha: N001
+Categoria: Normal
+
+Senha retirada com sucesso!
+Senha: P001
+Categoria: Preferencial
+
+Senha retirada com sucesso!
+Senha: U001
+Categoria: Urgente
+
+Senha retirada com sucesso!
+Senha: P002
+Categoria: Preferencial
+
+Senha retirada com sucesso!
+Senha: N002
+Categoria: Normal
+```
+
+### 2. Chamada de senhas
+
+Em seguida, o atendente escolhe a opção 02 seis vezes. Mesmo tendo chegado em outra ordem, as senhas são chamadas respeitando a precedência (Urgente, Preferencial, Normal) e, dentro de cada categoria, a ordem de chegada:
+
+| Chamada | Senha chamada | Painel após a chamada | Aguardando |
+|---|---|---|---|
+| 1ª | `U001` | Senha em atendimento: `U001` | 4 |
+| 2ª | `P001` | Senha em atendimento: `P001` | 3 |
+| 3ª | `P002` | Senha em atendimento: `P002` | 2 |
+| 4ª | `N001` | Senha em atendimento: `N001` | 1 |
+| 5ª | `N002` | Senha em atendimento: `N002` | 0 |
+| 6ª | nenhuma | O painel continua em `N002` | 0 |
+
+Saída do programa em uma das chamadas, com o painel atualizado:
+
+```
+Escolha uma opcao: 2
+
+Chamando proximo paciente: senha U001
+
+============ PAINEL DE ATENDIMENTO ============
+Senha em atendimento: U001
+Pacientes aguardando: 4
+===============================================
+```
+
+Na sexta chamada, como não há ninguém aguardando, o sistema avisa e mantém o painel:
+
+```
+Escolha uma opcao: 2
+
+Nenhum paciente aguardando atendimento.
 ```
 
 ## Casos de teste
