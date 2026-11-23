@@ -2,7 +2,7 @@
 
 Programa de console em linguagem C que gerencia as senhas de atendimento de uma clínica. O paciente informa seus dados, o sistema classifica o atendimento (Urgente, Preferencial ou Normal), gera a senha e um painel mostra qual senha está sendo atendida.
 
-**Autor:** Davi — UDF
+**Autor:** Davi, UDF
 
 ## Funcionalidades
 
