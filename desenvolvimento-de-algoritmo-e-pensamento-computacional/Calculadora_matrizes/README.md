@@ -1,6 +1,6 @@
 # Calculadora de Matrizes em C
 
-**Autor:** Davi, UDF
+**Autor:** Davi — UDF
 
 ## Objetivo
 
@@ -8,7 +8,8 @@ Desenvolver, em linguagem C, uma calculadora de matrizes que realiza soma, subtr
 
 ## Funcionalidades
 
-- Escolha da quantidade de matrizes (de 2 a 5).
+- Escolha da quantidade de matrizes (de 2 a 10).
+- Exibição automática da matriz resultante após cada operação.
 - Cadastro das matrizes, cada uma com seu próprio tamanho (até 10x10).
 - Soma, subtração, multiplicação e divisão entre todas as matrizes informadas.
 - Exibição da matriz solução.
@@ -31,8 +32,9 @@ Desenvolver, em linguagem C, uma calculadora de matrizes que realiza soma, subtr
 
 1. Use a **opção 1** para definir quantas matrizes serão usadas.
 2. Use a **opção 2** para digitar o tamanho e os elementos de cada matriz.
-3. Escolha uma operação nas **opções 3 a 6**.
-4. Use a **opção 7** para ver o resultado.
+3. Escolha uma operação nas **opções 3 a 6**. A matriz resultante já é exibida logo após o cálculo.
+4. Use a **opção 7** sempre que quiser ver a matriz solução de novo.
+5. Faça novas operações com as mesmas matrizes, escolha outra quantidade (opção 1) ou saia (opção 0).
 
 Se a ordem não for respeitada, o programa avisa o que falta fazer. Ao escolher uma nova quantidade de matrizes (opção 1), as matrizes e o resultado anteriores são descartados.
 
@@ -105,14 +107,14 @@ calculadora_matrizes/
 | `mostrar_menu` | Exibe as opções do menu |
 | `escolher_quantidade` | Opção 1: define quantas matrizes serão usadas |
 | `informar_matrizes` | Opção 2: lê todas as matrizes (exige a opção 1 antes) |
-| `calcular` | Opções 3 a 6: aplica a operação entre todas as matrizes e guarda o resultado |
+| `calcular` | Opções 3 a 6: aplica a operação entre todas as matrizes, guarda o resultado e o exibe |
 | `apresentar_resultado` | Opção 7: mostra a matriz solução |
 | `main` | Repete o menu até o usuário escolher sair e chama a função da opção escolhida |
 
 ## Estruturas utilizadas
 
 - `struct Matriz`: guarda o número de linhas, o de colunas e os valores em uma matriz de `double` (até 10x10).
-- Vetor de `Matriz` (até 5), para guardar as matrizes informadas.
+- Vetor de `Matriz` (até 10), para guardar as matrizes informadas.
 - Códigos de erro definidos com `#define` para as operações inválidas.
 - Estruturas de decisão (`if`, `switch`) e de repetição (`while`, `for`, `do-while`).
 
@@ -137,7 +139,7 @@ Soma de duas matrizes 2x2, `[[1, 2], [3, 4]]` e `[[5, 6], [7, 8]]`:
 
 ```
 Escolha uma opcao: 1
-Quantidade de matrizes (2 a 5): 2
+Quantidade de matrizes (2 a 10): 2
 Ok! Agora use a opcao 2 para informar as 2 matrizes.
 
 Escolha uma opcao: 2
@@ -161,9 +163,7 @@ Elemento [2][2]: 8
 Matrizes informadas com sucesso!
 
 Escolha uma opcao: 3
-Calculo realizado! Use a opcao 7 para ver a matriz solucao.
-
-Escolha uma opcao: 7
+Calculo realizado!
 
 --- MATRIZ SOLUCAO (2x2) ---
      6.00     8.00
@@ -191,6 +191,6 @@ Escolha uma opcao: 7
 ## Limites e observações
 
 - Cada matriz pode ter no máximo 10 linhas e 10 colunas.
-- São aceitas de 2 a 5 matrizes por vez.
+- São aceitas de 2 a 10 matrizes por vez.
 - Os valores são números reais (`double`) e o resultado é exibido com duas casas decimais.
 - Os dados ficam apenas na memória: ao encerrar o programa, nada é salvo.

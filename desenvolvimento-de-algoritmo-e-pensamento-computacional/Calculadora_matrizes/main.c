@@ -3,7 +3,9 @@
 #include "operacoes.h"
 #include "entrada.h"
 
-#define MAX_MATRIZES 5
+#define MAX_MATRIZES 10
+
+static void apresentar_resultado(void);   /* declarada aqui porque calcular() a usa */
 
 /* Dados do programa */
 static Matriz matrizes[MAX_MATRIZES];
@@ -25,7 +27,7 @@ static void mostrar_menu(void) {
 }
 
 static void escolher_quantidade(void) {
-    quantidade = ler_inteiro("Quantidade de matrizes (2 a 5): ", 2, MAX_MATRIZES);
+    quantidade = ler_inteiro("Quantidade de matrizes (2 a 10): ", 2, MAX_MATRIZES);
 
     /* mudou a quantidade: o que existia antes nao vale mais */
     matrizes_informadas = 0;
@@ -69,7 +71,8 @@ static void calcular(int operacao) {
 
     resultado = acumulada;
     tem_resultado = 1;
-    printf("Calculo realizado! Use a opcao 7 para ver a matriz solucao.\n");
+    printf("Calculo realizado!\n");
+    apresentar_resultado();
 }
 
 static void apresentar_resultado(void) {
