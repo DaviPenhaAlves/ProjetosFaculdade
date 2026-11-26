@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos do HeroVerse
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./desenvolvimento_front-end/HeroVerse
+          path: ./desenvolvimento_front-end/HeroVerse_3.0
 
       - name: Publicar site
         id: deployment
