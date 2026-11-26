@@ -4,7 +4,7 @@ name: Publicar HeroVerse
 on:
   push:
     branches:
-      - main
+      - principal
   workflow_dispatch:
 
 permissions:
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar arquivos do repositório
+      - name: Baixar repositório
         uses: actions/checkout@v4
 
       - name: Configurar GitHub Pages
@@ -34,9 +34,8 @@ jobs:
       - name: Preparar arquivos do HeroVerse
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./desenvolvimento_front-end/HeroVerse_3.0
+          path: ./desenvolvimento_front_end/HeroVerse_3.0
 
       - name: Publicar site
         id: deployment
         uses: actions/deploy-pages@v4
-
